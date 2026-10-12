@@ -2,6 +2,11 @@
 
 Chrome / Edge Manifest V3 扩展。点击工具栏图标打开侧边栏，默认在当前 Arena 页面切换到 Agent 模式，按设置的数量创建独立会话，逐个发送三条数字探测提示词，并使用 Ikaleio 引擎验证模型。
 
+
+## MCP 使用
+
+配套的 **Arena AI MCP**（将 VS Code 当前工作区接入 MCP 客户端，支持工作区文件读取、搜索、新建/修改/删除/移动与固定命令执行）独立开发并单独发布，仓库地址：**[https://github.com/2940235734/Mcp](https://github.com/2940235734/Mcp)**，可直接下载 `Arena-mcp-1.6.0.vsix` 扩展使用。完整安装、部署与客户端配置见 [MCP使用说明.md](MCP使用说明.md)。
+
 ## 安装或更新
 
 1. Chrome / Edge 116 或更新版本，打开扩展管理页并开启开发者模式。
