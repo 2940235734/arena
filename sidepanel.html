@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Arena 模型助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="sidepanel">
+  <header class="side-head">
+    <div class="brand"><span class="mark">✦</span><div><strong>Arena 模型助手</strong><small>模型识别工作台</small></div></div>
+    <button class="icon-btn" id="openFull">↗</button>
+  </header>
+  <main class="side-main">
+    <section class="side-card account-card">
+      <div class="card-title"><span class="soft-icon">♙</span><div><h2>当前账号</h2><p id="accountLabel">未选择账号</p></div><button class="refresh" id="refresh">↻</button></div>
+      <select id="accountSelect"><option value="">当前浏览器会话</option></select>
+      <div class="quota-line"><span>额度剩余</span><strong id="quotaValue">未查询</strong></div>
+    </section>
+    <section class="side-card detect-card">
+      <div class="card-title"><span class="soft-icon">✣</span><div><h2>抽模型</h2><p>自动对话 · 识别模型</p></div></div>
+      <div class="notice" id="loginNotice">默认使用 Agent 模式 · 开始时检查页面并自动切换</div>
+      <div class="round-row"><span>模型 <b id="modelIndex">0</b> / <b id="modelTotal">1</b></span><span>轮次 <b id="round">0</b> / 3</span><span class="finger-on">Ikaleio 引擎</span></div>
+      <div class="model-line">模型 <b id="modelState">等待识别</b></div>
+      <div class="progress"><i id="progressBar"></i></div>
+      <div class="status-line" id="statusLine">等待开始</div>
+      <label class="count-row">抽取模型数量<input id="modelCount" type="number" min="1" max="20" value="1"></label>
+      <div class="button-row"><button class="primary" id="start">开始抽模型</button><button class="secondary" id="stop" disabled>停止</button></div>
+      <div class="button-row"><button class="secondary" id="promptSettings">提示词设置</button><button class="secondary" id="fingerSettings">指纹设置</button></div>
+      <ol class="model-results" id="modelResults"></ol>
+      <label class="switch-row"><span>识别完成后自动重命名对话</span><input type="checkbox" id="autoRename" checked><i></i></label>
+    </section>
+    <section class="side-card session-card">
+      <div class="card-title"><span class="soft-icon">＋</span><div><h2>会话</h2><p>在当前账号中打开新的 Arena 会话</p></div></div>
+      <button class="primary wide" id="newChat">创建会话</button>
+    </section>
+    <section class="side-card test-card">
+      <div class="card-title"><span class="soft-icon gold">✦</span><div><h2>鹈鹕骑自行车测试</h2><p>在当前标签页发送测试提示词</p></div></div>
+      <button class="primary wide" id="sendTest">发送鹈鹕骑自行车测试</button>
+    </section>
+    <section class="side-card config-card">
+      <div class="card-title"><span class="soft-icon purple">⚙</span><div><h2>接口配置</h2><p>API Key 仅保存于本机</p></div></div>
+      <label>协议<select id="format"><option value="openai">OpenAI Chat Completions</option><option value="responses">OpenAI Responses</option><option value="anthropic">Anthropic Messages</option></select></label>
+      <label>Base URL<input id="baseUrl" placeholder="https://api.openai.com/v1"></label>
+      <label>API Key<input id="apiKey" type="password" placeholder="sk-..."></label>
+      <label>模型名<input id="model" placeholder="例如 gpt-4o-mini"></label>
+      <button class="secondary wide" id="save">保存配置</button>
+    </section>
+  </main>
+  <div class="modal hidden" id="promptModal"><div class="modal-box side-modal"><div class="modal-head"><h2>提示词设置</h2><button data-close="promptModal">×</button></div><p>每行一条提示词，恰好保留 3 条。建议保持 1–355、约 300 个整数的任务格式。</p><textarea id="prompts" rows="9"></textarea><div class="modal-actions"><button class="secondary" id="restorePrompts">恢复默认</button><button class="primary" data-close="promptModal">完成</button></div></div></div>
+  <div class="modal hidden" id="fingerModal"><div class="modal-box side-modal"><div class="modal-head"><h2>指纹设置</h2><button data-close="fingerModal">×</button></div><label>最少有效数字<input id="minNumbers" type="number" min="165" max="300" value="165"></label><label>自动重命名最低置信度 (%)<input id="confidenceThreshold" type="number" min="50" max="100" value="90"></label><label>单个会话回复超时（分钟）<input id="timeoutMinutes" type="number" min="1" max="30" value="3"></label><p>回复超时后会停止生成、删除该超时会话并继续下一个模型。识别使用 <a href="https://lm.ikale.io/" target="_blank" rel="noreferrer">Ikaleio Fingerpoint Detector</a> 的本地同源引擎；三轮样本联合分析。</p><div class="modal-actions"><button class="primary" data-close="fingerModal">完成</button></div></div></div>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

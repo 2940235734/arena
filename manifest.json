@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Arena 模型助手",
+  "version": "1.2.9",
+  "description": "账号管理、Arena 会话入口与模型自动识别。",
+  "action": {
+    "default_title": "Arena 模型助手"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "sidePanel",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.arena.ai/*",
+        "*://chat.lmsys.org/*",
+        "*://*.lmarena.ai/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "minimum_chrome_version": "116",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtwSqsDtMc3gjbpAsRC8QozSa6vZi6zdNEur6b0x2q5lybiNoe1ZPDkmLDvKigFTaTGOueG4O94f8X1xqHOhXITIIwdVWHMmAGI3dTD4SG0u9+H9+BBJsIrY7DM8PZHwjOui+rtA4wi+bgXPU17dZUrqp2Nf3zF/Og9kQcg1qXeC6XxhTz0r6Sed4XHRjGbLFdwIv3rLtuVkt4hh7xMHCLPgocx+NDMdlp8Yza7pzFejA6QAUAWteWLzCxrIrdcClF5zX8Y9mPmO00nueU2gqbUYqoAV7Ms0B5u1x5Ih2doruzGREUnEmeCAcYLO0gG+wEzE1vzA6lDLJtCrBtrbMJwIDAQAB"
+}

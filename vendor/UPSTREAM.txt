@@ -1,0 +1,2 @@
+https://github.com/Ikaleio/lm-detector
+Commit: 97eb41f78722d32524265bb259fe6258856ca470
